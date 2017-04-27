@@ -49,16 +49,16 @@ int calcul_nb_arc(int graphe[][TAILLE_MAX],int numero_noeud)
 int* voisin(int graphe[][TAILLE_MAX],int numero_noeud)
 {
 	int i,j=0;
-	int *tableau_voinsin = (int*)malloc(calcul_nb_arc(graphe,numero_noeud)*sizeof(int));
+	int *tableau_voisin = (int*)malloc(calcul_nb_arc(graphe,numero_noeud)*sizeof(int));
 	for (i = 0; i < TAILLE_MAX; i++)
 	{
 		if(graphe[numero_noeud][i]==1)
 		{
-			tableau_voinsin[j++] = i;
+			tableau_voisin[j++] = i;
 		}
 	}
 
-	return tableau_voinsin;
+	return tableau_voisin;
 }
 
 //fonction pour savoir si une valeur est dans un tableau
@@ -75,7 +75,7 @@ int in_tableau(int val,int tab[]) // Parcourir un tableau sans savoir sa taille.
 //fonction pour avoir le noeud qui a le plus de voisin
 int max_voisin(int graphe[][TAILLE_MAX])
 {
-	int i,nb_max = -1,nb_voisin,noeud;
+	int i,nb_voisin,noeud,nb_max = -1;
 	for(i=0;i<TAILLE_MAX;i++)
 	{
 		nb_voisin = calcul_nb_arc(graphe,i);
@@ -88,10 +88,10 @@ int max_voisin(int graphe[][TAILLE_MAX])
 	return noeud;
 }
 
-void main(void)
+int main(void)
 {
 
-	int i,j,k=1,nb_voisin,cond_dedans,noeud_max_voisin; //cond_dedans vaut 1 si aucun élément de liste_voisin est dans dominant_set, 0 sinon
+	int i,j,nb_voisin,cond_dedans = 1,noeud_max_voisin,k=1; //cond_dedans vaut 1 si aucun élément de liste_voisin est dans dominant_set, 0 sinon
 	int *liste_voisin;
 	int dominant_set[TAILLE_MAX-1];
 	for (i = 0; i < TAILLE_MAX; i++) // pour initialiser le tableau à -1 et avoir un point avec un nb de voisin élévé
@@ -102,7 +102,7 @@ void main(void)
 	dominant_set[0] = noeud_max_voisin;
 
 	printf("INIT\n");
-	for (int i = 0; i < TAILLE_MAX; ++i)
+	for(i = 0; i < TAILLE_MAX; i++)
 	{
 		printf("%d\n",dominant_set[i]);
 	}
@@ -112,13 +112,14 @@ void main(void)
 	{
 		liste_voisin = voisin(graphe,i);
 		nb_voisin = calcul_nb_arc(graphe,i);
-		if (i==dominant_set[0]) continue;
+		//if (i==dominant_set[0]) continue;
+		if (in_tableau(i,dominant_set)) continue;
 		for(j=0;j<nb_voisin;j++)
 		{
-			if(!in_tableau(liste_voisin[j],dominant_set)) cond_dedans = 1;
-			else cond_dedans = 0;
+			if(in_tableau(liste_voisin[j],dominant_set)==1) cond_dedans = 0; //il est dans la liste
 		}
 		if(cond_dedans) dominant_set[k++] = i;
+		cond_dedans = 1;
 	}
 
 
@@ -134,7 +135,7 @@ void main(void)
 	int *b = voisin(graphe,0); 
 	*/
 	printf("AFTER\n");
-	for (int i = 0; i < TAILLE_MAX; ++i)
+	for (i = 0; i < TAILLE_MAX; ++i)
 	{
 		printf("%d\n",dominant_set[i]);
 	}
@@ -149,4 +150,5 @@ void main(void)
 	}
 
 */	
+	return 0;
 }
