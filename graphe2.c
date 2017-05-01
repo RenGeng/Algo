@@ -21,7 +21,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 1
 
 
 
-/*
+
 #define TAILLE_MAX 7
 int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 2
 						{0,1,0,0,0,0,0},
@@ -33,7 +33,6 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 2
 				   		{0,0,1,1,0,1,0},
 
 				   					 };
-*/
 
 /*
 #define TAILLE_MAX 5
@@ -48,7 +47,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 3
 				   					 };
 */
 
-
+/*
 #define TAILLE_MAX 6
 int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 4
 
@@ -60,7 +59,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 4
 						{0,0,1,0,1,0},
 
 				   					 };
-
+*/
 
 /*
 #define TAILLE_MAX 6

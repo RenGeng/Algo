@@ -20,7 +20,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 1
 
 
 
-/*
+
 #define TAILLE_MAX 7
 int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 2
 						{0,1,0,0,0,0,0},
@@ -32,7 +32,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 2
 				   		{0,0,1,1,0,1,0},
 
 				   					 };
-*/
+
 
 /*
 #define TAILLE_MAX 5
@@ -47,7 +47,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 3
 				   					 };
 */
 
-
+/*
 #define TAILLE_MAX 6
 int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 4
 
@@ -59,7 +59,7 @@ int graphe[TAILLE_MAX][TAILLE_MAX] = { // graphe 4
 						{0,0,1,0,1,0},
 
 				   					 };
-
+*/
 
 /*
 #define TAILLE_MAX 6
@@ -206,6 +206,7 @@ int main(void)
 		if(cond_dedans)
 		{
 			dominant_set[k++] = i;
+			free(liste_voisin_dominant);
 			liste_voisin_dominant = liste_voisin_dominant_set(graphe,dominant_set);
 		}
 		cond_dedans = 1;
@@ -223,6 +224,7 @@ int main(void)
 		if (in_tableau(i,liste_voisin_dominant,nb_voisin_dominant_set) || in_tableau(i,dominant_set,TAILLE_MAX)) continue;
 		printf("FINNNNNNNNNNNNNN\n");
 		dominant_set[k++] = i;
+		free(liste_voisin_dominant);
 		liste_voisin_dominant = liste_voisin_dominant_set(graphe,dominant_set);
 	}
 
@@ -257,5 +259,6 @@ int main(void)
 */	
 
 	free(liste_voisin);
+	free(liste_voisin_dominant);
 	return 0;
 }
