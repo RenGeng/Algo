@@ -2,7 +2,7 @@
 #include "notre_algo.h"
 #include "algo_glouton.h"
 #include "commun.h"
-
+#include <time.h>
 /*
 
 Pensez à changer TAILLE_MAX dans le fichier commun.h
@@ -77,7 +77,32 @@ int main(void)
 
 					   					 };
 	*/
-
+	int** generation_graphe()
+	{
+		int i; j;
+		srand(time(NULL));
+		int taille = rand()%20 // max de la taille de notre graphe à 20
+		int** graphe = malloc(taille*sizeof(int*));
+		for(i=0:i<taille;i++)
+			graphe[i]=malloc(taille*sizeof(int));
+		for(i=0;i<taille;i++)
+		{
+			for(j=i;j<taille;j++)
+			{
+				if(rand%10<3 && i!=j) // 1/3 des cases à 1
+				{
+					graphe[i][j]=1;
+					graphe[j][i]=1;
+				}
+				else
+				{
+					graphe[i][j]=1;
+					graphe[j][i]=1;
+				}
+			}
+		}
+		return graphe;
+	}
 	int i;
 
 	int* notre = notre_algo(graphe);
